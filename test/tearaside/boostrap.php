@@ -1,4 +1,8 @@
-  <body>
+<?php
+    if(! isset($page_name)){
+    $page_name = '';
+    }
+?>
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
           <a class="navbar-brand" href="#">Navbar</a>
           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -7,11 +11,14 @@
           </button>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <li class="nav-item <?= $page_name=='address-list' ? 'active' : '' ?>">
+                      <a class="nav-link" href="address-list.php">資料列表</a>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
+                  <li class="nav-item <?= $page_name=='data-insert' ? 'active' : '' ?>">
+                      <a class="nav-link " href="insert-list.php">新增資料</a>
+                  </li>
+                  <li class="nav-item <?= $page_name=='data-insert2' ? 'active' : '' ?>">
+                      <a class="nav-link" href="insert-list2.php">新增資料 2 ajax</a>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -27,6 +34,11 @@
               </form>
           </div>
       </nav>
+        <style>
+            #collapsibleNavId .nav-item.active {
+            background-color: #7abaff;
+            }
+        </style>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
