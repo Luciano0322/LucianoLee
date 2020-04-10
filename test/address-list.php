@@ -28,6 +28,11 @@ $stmt = $pdo->query($sql);
 ?>
 <?php include __DIR__.'/tearaside/head.php'; ?>
 <?php include __DIR__.'/tearaside/boostrap.php'; ?>
+<style>
+    tbody tr i.fa-trash-alt {
+        color: red;
+    }
+</style>
 <div class="container">
     <nav aria-label="Page navigation example">
     <ul class="pagination">
@@ -47,17 +52,29 @@ $stmt = $pdo->query($sql);
     <table class="table table-striped">
         <thead>
         <tr>
+            <th scope="col"><i class="fas fa-trash-alt"></i></th>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Mobile</th>
             <th scope="col">Email</th>
             <th scope="col">Birthday</th>
             <th scope="col">Address</th>
+            <th scope="col"><i class="fas fa-edit"></i></th>
         </tr>
         </thead>
         <tbody>
         <?php while($r=$stmt->fetch()): ?>
         <tr>
+            <!-- <td>
+                <a href="javascript: delete_it(<?= $r['sid'] ?>)">
+                <i class="fas fa-trash-alt"></i>
+                </a>
+            </td> -->
+            <td>
+                <a class="del-link" href="data-delete.php?sid=<?= $r['sid'] ?>">
+                <i class="fas fa-trash-alt"></i>
+                </a>
+             </td>
             <td><?= $r['sid'] ?></td>
             <td><?= $r['name'] ?></td>
             <td><?= $r['phone'] ?></td>
@@ -67,9 +84,30 @@ $stmt = $pdo->query($sql);
                 <td><?= strip_tags($r['address']) ?></td>
                 */ ?>
                 <td><?= htmlentities($r['address']) ?></td>
+                <td><a href="data-edit.php?sid=<?= $r['sid'] ?>"><i class="fas fa-edit"></i></a></td>
+            
         </tr>
         <?php endwhile; ?>
         </tbody>
     </table>
 </div>
+<script>
+    // function delete_it(sid){
+    //     if(confirm(`確定要刪除資料編號為 ${sid} 的項目嗎?`)){
+    //         location.href = 'data-delete.php?sid=' + sid;
+    //     }
+    // }
+    let delete_it = sid => {if(confirm(`確定要刪除資料編號為 ${sid} 的項目嗎?`)){
+            location.href = 'data-delete.php?sid=' + sid;}
+        }
+
+    $('.del-link').click(function(event){
+    console.log(this);
+    console.log($(this));
+    let sid = $(this).parent().next().text();
+    if(! confirm(`確定要刪除資料編號為 ${sid} 的項目嗎?`)){
+        event.preventDefault();
+        }
+    });
+</script>
 <?php include __DIR__.'/tearaside/footer.php'; ?>
