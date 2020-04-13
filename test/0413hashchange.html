@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hashchange</title>
+    <style>
+        header{
+            width: 100%;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+        }
+        header .tag{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        header .tag a{
+            padding: 2em;
+        }
+        .pag1{
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="tag">
+            <a href="#a">a</a>
+            <a href="#b">b</a>
+            <a href="#c">c</a>
+            <a href="#d">d</a>
+            <a href="#e">e</a>
+            <a href="#f">f</a>
+        </div>
+    </header>
+
+    <div class="pag1" id="a">A</div>
+    <div class="pag1" id="b">B</div>
+    <div class="pag1" id="c">C</div>
+    <div class="pag1" id="d">D</div>
+    <div class="pag1" id="e">E</div>
+    <div class="pag1" id="f">F</div>
+
+    <script>
+        window.addEventListener('hashchange', function(event){
+            console.log(location.hash);
+        });
+    
+        console.log(location.hash);
+    
+    
+    </script>
+</body>
+</html>

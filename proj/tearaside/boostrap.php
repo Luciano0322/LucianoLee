@@ -17,24 +17,29 @@
                   <li class="nav-item <?= $page_name=='data-insert' ? 'active' : '' ?>">
                       <a class="nav-link " href="insert-list.php">新增資料</a>
                   </li>
-                  <li class="nav-item <?= $page_name=='data-insert2' ? 'active' : '' ?>">
-                      <a class="nav-link" href="insert-list2.php">新增資料 2 ajax</a>
-                  </li>
-                  <li class="nav-item <?= $page_name=='address-list2' ? 'active' : '' ?>">
-                    <a class="nav-link" href="address-list2.php">資料列表 ajax</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownId">
-                          <a class="dropdown-item" href="#">Action 1</a>
-                          <a class="dropdown-item" href="#">Action 2</a>
-                      </div>
-                  </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
+              <ul class="navbar-nav">
+              <?php // print_r($_SESSION['loginUser'])  ?>
+              <?php if(isset($_SESSION['loginUser'])):  ?>
+                <li class="nav-item">
+                        <a class="nav-link"><?= $_SESSION['loginUser']['nickname'] ?></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="">修改會員資料</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="">登出</a>
+                    </li>
+              <?php else:  ?>
+                
+                    <li class="nav-item <?= $page_name=='login' ? 'active' : '' ?>">
+                        <a class="nav-link" href="login.php">登入</a>
+                    </li>
+                    <li class="nav-item <?= $page_name=='data-insert' ? 'active' : '' ?>">
+                        <a class="nav-link" href="register.php">註冊</a>
+                    </li>
+             <?php endif;  ?>
+            </ul>
           </div>
       </nav>
         <style>
